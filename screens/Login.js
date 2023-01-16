@@ -20,7 +20,7 @@ function LoginScreen(props) {
   }
   
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, }}>
         <Text>Login Screen</Text>
         <Text></Text>
         <Button onPress={() => handlePress()} title="click me" />
