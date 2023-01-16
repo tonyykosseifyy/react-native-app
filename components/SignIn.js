@@ -33,11 +33,14 @@ function SignIn() {
         />
       </View>
       <View style={styles.inputsWrapper}>
-        <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username or Email Address" />
+        <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username, email address" />
         <CustomInput style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
       </View>
 
       <Button title="toggle theme" onPress={() => handlePress()} />
+      <View style={{flex: 1}}>
+
+      </View>
       <AppText>SignIn</AppText>
     </Screen>
   );
@@ -52,29 +55,30 @@ const styles = StyleSheet.create({
   imageWrapper: {
     width: "100%",
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "flex-end",
-    flex: 1,
-    paddingTop: 100,
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    flex: 2,
+    paddingTop: 30,
   },
   imageLogo: {
-    height: 200,
+    height: 90,
     width: 200,
-    objectFit: "contain"
+    objectFit: "contain",
   },
   inputsWrapper : {
-    flex: 3,
+    flex: 6,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    paddingTop: 50,
   },
   inputs: {
     width: "100%",
     maxWidth: 350,
-    height: 45,
+    height: 47,
     borderWidth: .3,
-    borderRadius: 5,
+    borderRadius: 3,
     marginBottom: 15,
     padding: 10,
     placeholderTextColor: "black",

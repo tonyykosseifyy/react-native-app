@@ -3,7 +3,7 @@ export const lightTheme = {
     colors: {
       primary: 'black',
       secondary: "rgb(140,140,140)",
-      background: 'rgb(242, 242, 242)',
+      background: 'white',
       card: 'rgb(255, 255, 255)',
       text: 'rgb(28, 28, 30)',
       border: 'rgb(199, 199, 204)',
