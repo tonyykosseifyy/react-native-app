@@ -1,11 +1,14 @@
-import { View, Text , Button } from 'react-native';
+import { StyleSheet, View, Text , Button } from 'react-native';
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useSelector , useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/reducers.js/themeSlice';
+import { useTheme } from "@react-navigation/native";
 
-function LoginScreen() { 
+function LoginScreen(props) { 
   const theme = useSelector(state => state.theme.theme);
   const dispatch = useDispatch();
+  const { colors } = useTheme();
+
   const handlePress = async () => {
     const new_theme = theme === "light" ? "dark" : "light";
     const result = await storeUserSession("text", "theme", new_theme);
@@ -15,6 +18,7 @@ function LoginScreen() {
       }))
     }
   }
+  
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Login Screen</Text>
@@ -24,4 +28,12 @@ function LoginScreen() {
   );
 };
   
+const styles = StyleSheet.create({
+  loginContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  }
+});
+
 export default LoginScreen ;
