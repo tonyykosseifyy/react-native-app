@@ -5,10 +5,8 @@ import { Screen , AppText , CustomInput } from "../resusable";
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useDispatch , useSelector } from 'react-redux';
 import { toggleTheme } from "../redux/reducers/themeSlice";
-import { lightInstagram, darkInstagram } from "../assets/image_links";
 
 function SignIn() {
-  console.log(lightInstagram, darkInstagram)
   const [ userName , setUserName ] = useState("");
   const [ password, setPassword ] = useState("");
   const passedTheme = useTheme();
@@ -23,26 +21,48 @@ function SignIn() {
       }))
     }
   }
+  
   return (
-    <Screen wrapper={View}>
-      <View>
-        <Image style={styles.imageLogo} source={{uri: passedTheme === "dark" ? darkInstagram: lightInstagram }} />
+    <Screen wrapper={View} style={styles.container}>
+      <View style={styles.imageWrapper}>
+        <Image 
+          style={styles.imageLogo} 
+          source={passedTheme.dark ? require("../assets/instagram-dark.png") : require("../assets/instagram-light.png")} 
+        />
       </View>
-      <View>
+      <View style={styles.inputsWrapper}>
         <CustomInput value={userName} onChangeText={text => setUserName(text)} placeholder="Enter your username" />
         <CustomInput value={password} onChangeText={text => setPassword(text)}  placeholder="password" />
       </View>
-      <Button  title="toggle theme" onPress={() => handlePress()} />
+      <Button title="toggle theme" onPress={() => handlePress()} />
       <AppText>SignIn</AppText>
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+  }, 
+  imageWrapper: {
+    width: "100%",
+    maxHeight: 200,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    flex: 1,
+    backgroundColor: "red",
+  },
   imageLogo: {
-    height: 100,
-    width: 300,
+    height: 70,
+    width: 150,
     objectFit: "contain"
+  },
+  inputsWrapper : {
+    flex: 3
   }
 });
 
