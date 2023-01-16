@@ -1,11 +1,14 @@
 import React from 'react'
-import { Text } from 'react-native'
-
+import { View , Text } from 'react-native'
+import { Screen } from "../resusable";
 
 function SignUp() {
   return (
-    <Text>SignUp</Text>
-  )
-}
+    <Screen wrapper={View}>
+      <Text>SignUp</Text>
+    </Screen>
+  );
+};
+
 
 export default SignUp;

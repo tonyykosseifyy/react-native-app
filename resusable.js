@@ -1,21 +1,35 @@
-import { StyleSheet, View, Text , Button } from 'react-native';
+import { StyleSheet, View, Text , Button, BackHandler } from 'react-native';
 import Constants from 'expo-constants';
+import { useTheme } from '@react-navigation/native';
 
-export const AppText = ( props ) => (
-    <Text {...props} style={[props.style, styles.appText ]} >{props.children}</Text>
-);
+export const AppText = ( props ) => {
+    const { colors } = useTheme();
+    const { children , ...rest } = props ;
+    return (
+        <Text {...rest} style={[{ color: colors.primary},rest.style, styles.appText ]} >{children}</Text>
+    )
+}
 
-export const Screen = ( props ) => (
-    <props.wrapper {...props} style={[props.style, styles.screen]}>{props.children}</props.wrapper>
-)
+
+export const Screen = ( props ) => {
+    const { colors } = useTheme();
+    const { children, ...rest } = props;
+    return (
+    <rest.wrapper 
+        {...rest} 
+        style={[ {backgroundColor: colors.background}, styles.screen, rest.style]}
+    >
+        {children}
+    </rest.wrapper>)
+};
 
 
 const styles = StyleSheet.create({
     appText: {
-        color: "white"
+        fontFamily: "OpenSans-Light"
     },
     screen: {
-        marginTop: Constants.statusBarHeight
+        marginTop: Constants.statusBarHeight,
     }
 });
 

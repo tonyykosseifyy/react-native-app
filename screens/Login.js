@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text , Button } from 'react-native';
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useSelector , useDispatch } from 'react-redux';
-import { toggleTheme } from '../redux/reducers.js/themeSlice';
+import { toggleTheme } from '../redux/reducers/themeSlice';
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignIn from "../components/SignIn";

@@ -7,15 +7,20 @@ import { useSelector , useDispatch } from 'react-redux';
 import { darkTheme, lightTheme } from './theme';
 import { Appearance } from 'react-native';
 import {  getSessionValue , storeUserSession } from "./helpers/asyncStorage";
-import { toggleTheme } from './redux/reducers.js/themeSlice';
+import { toggleTheme } from './redux/reducers/themeSlice';
 import { StatusBar } from 'expo-status-bar';
-import { Font } from 'expo-font';
+import { useFonts } from 'expo-font';
 import { Text } from 'react-native';
 
 
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
+  const [ fontsLoaded ] = useFonts({
+      'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+      'OpenSans-Light': require('./assets/fonts/OpenSans-Light.ttf'),
+      'OpenSans-Medium': require('./assets/fonts/OpenSans-Medium.ttf'),
+  })
   const dispatch = useDispatch();
   const theme = useSelector(state => state.theme.theme);
   const [ loaded, setLoaded ] = useState(false);
@@ -31,24 +36,12 @@ const Routes = () => {
       const appearanceTheme = Appearance.getColorScheme();
       dispatch(toggleTheme({theme: appearanceTheme}))
     }
-    const getFonts = async () => {
-      try {
-        await Font.loadAsync({
-          'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-          'OpenSans-Light': require('./assets/fonts/OpenSans-Light.ttf'),
-          'OpenSans-Medium': require('./assets/fonts/OpenSans-Medium.ttf'),
-        });
-        setLoaded(true)
-      } catch(err) {
-          setLoaded(true)
-      }
-    }
-    getFonts();
+
     return async () => {
       await storeUserSession("text", "theme", theme) ;
     }
   },[])
-  if (!loaded) {
+  if (!fontsLoaded) {
     return <Text>
       not loaded
     </Text>
