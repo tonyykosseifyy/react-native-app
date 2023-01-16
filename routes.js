@@ -12,6 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Font } from 'expo-font';
 import { Text } from 'react-native';
 
+
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
@@ -52,8 +53,9 @@ const Routes = () => {
       not loaded
     </Text>
   }
+  
   return (
-      <NavigationContainer theme={theme ==="dark" ? darkTheme : lightTheme } >
+      <NavigationContainer style={{backgroundColor: "red"}} theme={theme ==="dark" ? darkTheme : lightTheme }>
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
