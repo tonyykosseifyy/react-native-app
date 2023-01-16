@@ -1,10 +1,12 @@
 import { useTheme } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { View , Text , Button , Image, StyleSheet } from 'react-native'
+import { View , Text , Button , Image, StyleSheet, Dimensions } from 'react-native'
 import { Screen , AppText , CustomInput } from "../resusable";
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useDispatch , useSelector } from 'react-redux';
 import { toggleTheme } from "../redux/reducers/themeSlice";
+
+const { width, height } = Dimensions.get('window'); 
 
 function SignIn() {
   const [ userName , setUserName ] = useState("");
@@ -31,9 +33,10 @@ function SignIn() {
         />
       </View>
       <View style={styles.inputsWrapper}>
-        <CustomInput value={userName} onChangeText={text => setUserName(text)} placeholder="Enter your username" />
-        <CustomInput value={password} onChangeText={text => setPassword(text)}  placeholder="password" />
+        <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username or Email Address" />
+        <CustomInput style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
       </View>
+
       <Button title="toggle theme" onPress={() => handlePress()} />
       <AppText>SignIn</AppText>
     </Screen>
@@ -61,7 +64,21 @@ const styles = StyleSheet.create({
     objectFit: "contain"
   },
   inputsWrapper : {
-    flex: 3
+    flex: 3,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  inputs: {
+    width: "100%",
+    maxWidth: 350,
+    height: 45,
+    borderWidth: .3,
+    borderRadius: 5,
+    marginBottom: 15,
+    padding: 10,
+    placeholderTextColor: "black",
+    fontFamily: "OpenSans-Medium"
   }
 });
 

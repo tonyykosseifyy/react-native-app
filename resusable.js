@@ -26,7 +26,15 @@ export const Screen = ( props ) => {
 export const CustomInput = ( props ) => {
     const { colors } = useTheme();
     return (
-        <TextInput {...props} style={[styles.textInput,{color: colors.primary, backgroundColor: colors.background}, props.styles ]} />
+        <TextInput 
+            placeholderTextColor={colors.secondary}
+            {...props} 
+            style={[
+                styles.textInput,
+                {color: colors.primary, backgroundColor: colors.background, borderColor: colors.secondary}, 
+                props.style 
+            ]} 
+        />
     )
 };
 
