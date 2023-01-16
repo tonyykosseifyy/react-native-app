@@ -1,4 +1,5 @@
 export const lightTheme = {
+    dark: false, 
     colors: {
       primary: 'black',
       background: 'rgb(242, 242, 242)',
@@ -10,6 +11,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+    dark: true,
     colors: {
       primary: 'white',
       background: 'black',
