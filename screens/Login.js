@@ -3,6 +3,12 @@ import { storeUserSession } from "../helpers/asyncStorage";
 import { useSelector , useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/reducers.js/themeSlice';
 import { useTheme } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignIn from "../components/SignIn";
+import SignUp from "../components/SignUp";
+
+
+const LoginStack = createNativeStackNavigator();
 
 function LoginScreen(props) { 
   const theme = useSelector(state => state.theme.theme);
@@ -20,11 +26,10 @@ function LoginScreen(props) {
   }
   
     return (
-      <View style={{ flex: 1, }}>
-        <Text>Login Screen</Text>
-        <Text></Text>
-        <Button onPress={() => handlePress()} title="click me" />
-      </View>
+      <LoginStack.Navigator screenOptions={{ headerShown: false }} initialRouteName="sign-in">
+        <LoginStack.Screen name="sign-up" component={SignUp} />
+        <LoginStack.Screen name="sign-in" component={SignIn} />
+    </LoginStack.Navigator>  
   );
 };
   
