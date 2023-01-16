@@ -48,17 +48,16 @@ const styles = StyleSheet.create({
   }, 
   imageWrapper: {
     width: "100%",
-    maxHeight: 200,
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "flex-end",
     flex: 1,
-    backgroundColor: "red",
+    paddingTop: 100,
   },
   imageLogo: {
-    height: 70,
-    width: 150,
+    height: 200,
+    width: 200,
     objectFit: "contain"
   },
   inputsWrapper : {
