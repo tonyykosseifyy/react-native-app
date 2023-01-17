@@ -34,19 +34,24 @@ function SignIn() {
           source={passedTheme.dark ? require("../assets/instagram-dark.png") : require("../assets/instagram-light.png")} 
         />
       </View>
-      <View style={styles.inputsWrapper}>
-        <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username, email address" />
-        <View style={{width: "100%", maxWidth: 350, position: "relative"}}>
-          <CustomInput secureTextEntry={secure} style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
-          <Feather 
-            name={secure ? "eye-off":"eye"} 
-            onPress={() => setSecure(!secure)} 
-            size={24} 
-            style={{position: "absolute", right: 13,top:12,color: passedTheme.colors.primary}} 
-          />
+      <View style={styles.formWrapper}>
+        <View style={styles.inputsWrapper}>
+          <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username, email address" />
+          <View style={{width: "100%", position: "relative"}}>
+            <CustomInput secureTextEntry={secure} style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
+            <Feather 
+              name={secure ? "eye-off":"eye"} 
+              onPress={() => setSecure(!secure)} 
+              size={24} 
+              style={{position: "absolute", right: "8%" ,top:12,color: passedTheme.colors.primary}} 
+            />
+          </View>
+          
         </View>
-        
+
+        <AppText style={{color: "#458eff", fontFamily:"OpenSans-Medium", marginLeft:"auto", marginRight: "5%"}}>Forgotten password?</AppText>
       </View>
+      
 
       <Button title="toggle theme" onPress={() => handlePress()} />
       <View style={{flex: 1}}>
@@ -77,23 +82,26 @@ const styles = StyleSheet.create({
     width: 200,
     objectFit: "contain",
   },
-  inputsWrapper : {
+  formWrapper: {
     flex: 6,
+    paddingTop: 50,
+  },
+  inputsWrapper : {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: 50,
   },
   inputs: {
-    width: "100%",
-    maxWidth: 350,
+    width: "90%",
     height: 47,
     borderWidth: .3,
     borderRadius: 3,
     marginBottom: 15,
     padding: 10,
     placeholderTextColor: "black",
-    fontFamily: "OpenSans-Medium"
+    fontFamily: "OpenSans-Medium",
+    marginLeft: "auto",
+    marginRight: "auto"
   }
 });
 
