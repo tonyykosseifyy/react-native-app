@@ -52,7 +52,7 @@ function SignIn() {
         <AppText style={{color: passedTheme.colors.blue, fontFamily:"OpenSans-Medium", marginLeft:"auto"}}>Forgotten password?</AppText>
 
         <InstagramButton style={styles.signInButton}>
-          <AppText style={{color: "white"}}>Log In</AppText>
+          <AppText style={{color: "white",fontFamily:"OpenSans-Medium"}}>Log In</AppText>
         </InstagramButton>
 
       </View>
