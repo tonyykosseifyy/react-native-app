@@ -1,7 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { View , Text , Button , Image, StyleSheet, Dimensions } from 'react-native'
-import { Screen , AppText , CustomInput } from "../resusable";
+import { View , Text , Button , Image, StyleSheet, Dimensions, Pressable } from 'react-native'
+import { Screen , AppText , CustomInput , InstagramButton } from "../resusable";
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useDispatch , useSelector } from 'react-redux';
 import { toggleTheme } from "../redux/reducers/themeSlice";
@@ -43,17 +43,22 @@ function SignIn() {
               name={secure ? "eye-off":"eye"} 
               onPress={() => setSecure(!secure)} 
               size={24} 
-              style={{position: "absolute", right: "8%" ,top:12,color: passedTheme.colors.primary}} 
+              style={{position: "absolute", right: 12 ,top:12,color: passedTheme.colors.primary}} 
             />
           </View>
           
         </View>
 
-        <AppText style={{color: "#458eff", fontFamily:"OpenSans-Medium", marginLeft:"auto", marginRight: "5%"}}>Forgotten password?</AppText>
+        <AppText style={{color: passedTheme.colors.blue, fontFamily:"OpenSans-Medium", marginLeft:"auto"}}>Forgotten password?</AppText>
+
+        <InstagramButton style={styles.signInButton}>
+          <AppText style={{color: "white"}}>Log In</AppText>
+        </InstagramButton>
+
       </View>
       
 
-      <Button title="toggle theme" onPress={() => handlePress()} />
+      <Button style={styles.signInButton} title="toggle theme" onPress={() => handlePress()} />
       <View style={{flex: 1}}>
 
       </View>
@@ -85,6 +90,8 @@ const styles = StyleSheet.create({
   formWrapper: {
     flex: 6,
     paddingTop: 50,
+    paddingLeft: ( width * 7 ) / 100,
+    paddingRight: ( width * 7 ) / 100
   },
   inputsWrapper : {
     display: "flex",
@@ -92,7 +99,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputs: {
-    width: "90%",
+    width: "100%",
     height: 47,
     borderWidth: .3,
     borderRadius: 3,
@@ -102,6 +109,10 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSans-Medium",
     marginLeft: "auto",
     marginRight: "auto"
+  },
+  signInButton: {
+    width: "100%",
+    marginTop: 40,
   }
 });
 

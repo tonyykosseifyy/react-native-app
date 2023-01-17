@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text , Button , TextInput } from 'react-native';
+import { StyleSheet, View, Text , Button , TextInput, Pressable } from 'react-native';
 import Constants from 'expo-constants';
 import { useTheme } from '@react-navigation/native';
 
@@ -37,6 +37,13 @@ export const CustomInput = ( props ) => {
         />
     )
 };
+export const InstagramButton = ( props ) => {
+    const { colors } = useTheme();
+    const { children , style, ...rest } = props;
+    return (
+        <Pressable {...rest} style={[styles.instaButton,{backgroundColor:colors.blue} ,style]}>{children}</Pressable>
+    )
+}
 
 const styles = StyleSheet.create({
     appText: {
@@ -47,6 +54,14 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontFamily: "OpenSans-Light",
-    }
+    },
+    instaButton: {
+        display: "flex",
+        justifyContent:"center",
+        alignItems:"center",
+        height: 47, 
+        marginTop: 30,
+        borderRadius: 7,
+      }
 });
 
