@@ -5,13 +5,14 @@ import { Screen , AppText , CustomInput } from "../resusable";
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useDispatch , useSelector } from 'react-redux';
 import { toggleTheme } from "../redux/reducers/themeSlice";
+import { Feather } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window'); 
 
 function SignIn() {
   const [ userName , setUserName ] = useState("");
   const [ password, setPassword ] = useState("");
-  const [ show , setShow ] = useState(true);
+  const [ secure , setSecure ] = useState(true);
   const passedTheme = useTheme();
   const theme = useSelector(state => state.theme.theme);
   const dispatch = useDispatch();
@@ -35,7 +36,16 @@ function SignIn() {
       </View>
       <View style={styles.inputsWrapper}>
         <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username, email address" />
-        <CustomInput secureTextEntry={show} style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
+        <View style={{width: "100%", maxWidth: 350, position: "relative"}}>
+          <CustomInput secureTextEntry={secure} style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
+          <Feather 
+            name={secure ? "eye-off":"eye"} 
+            onPress={() => setSecure(!secure)} 
+            size={24} 
+            style={{position: "absolute", right: 13,top:12,color: passedTheme.colors.primary}} 
+          />
+        </View>
+        
       </View>
 
       <Button title="toggle theme" onPress={() => handlePress()} />
