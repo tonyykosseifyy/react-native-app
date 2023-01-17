@@ -31,7 +31,7 @@ export const CustomInput = ( props ) => {
             {...props} 
             style={[
                 styles.textInput,
-                {color: colors.primary, backgroundColor: colors.background, borderColor: colors.secondary}, 
+                {color: colors.primary, backgroundColor: colors.inputBackground, borderColor: colors.secondary}, 
                 props.style 
             ]} 
         />

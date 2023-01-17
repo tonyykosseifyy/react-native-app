@@ -11,6 +11,7 @@ const { width, height } = Dimensions.get('window');
 function SignIn() {
   const [ userName , setUserName ] = useState("");
   const [ password, setPassword ] = useState("");
+  const [ show , setShow ] = useState(true);
   const passedTheme = useTheme();
   const theme = useSelector(state => state.theme.theme);
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function SignIn() {
       </View>
       <View style={styles.inputsWrapper}>
         <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username, email address" />
-        <CustomInput style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
+        <CustomInput secureTextEntry={show} style={styles.inputs} value={password} onChangeText={text => setPassword(text)}  placeholder="Password" />
       </View>
 
       <Button title="toggle theme" onPress={() => handlePress()} />
