@@ -44,6 +44,17 @@ export const InstagramButton = ( props ) => {
         <Pressable {...rest} style={[styles.instaButton,{backgroundColor:colors.blue} ,style]}>{children}</Pressable>
     )
 }
+export const Bar = ( props ) => {
+    const { colors } = useTheme();
+    return (
+        <View {...props} style={[styles.bar, {backgroundColor: colors.secondary}, props.style]} />
+    )
+}
+export const BlueText = ( props ) => {
+    const { colors } = useTheme();
+    const { children , ...rest } = props ;
+    return <AppText {...rest} style={[{color: colors.blue, fontFamily:"OpenSans-Medium"}, rest.style]}>{children}</AppText>
+}
 
 const styles = StyleSheet.create({
     appText: {
@@ -62,6 +73,10 @@ const styles = StyleSheet.create({
         height: 47, 
         marginTop: 30,
         borderRadius: 7,
-      }
+    },
+    bar: {
+        height: 1,
+        width: "100%"
+    }
 });
 

@@ -1,7 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { View , Text , Button , Image, StyleSheet, Dimensions, Pressable } from 'react-native'
-import { Screen , AppText , CustomInput , InstagramButton } from "../resusable";
+import { Screen , AppText , CustomInput , InstagramButton , Bar, BlueText } from "../resusable";
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useDispatch , useSelector } from 'react-redux';
 import { toggleTheme } from "../redux/reducers/themeSlice";
@@ -34,6 +34,7 @@ function SignIn() {
           source={passedTheme.dark ? require("../assets/instagram-dark.png") : require("../assets/instagram-light.png")} 
         />
       </View>
+
       <View style={styles.formWrapper}>
         <View style={styles.inputsWrapper}>
           <CustomInput style={styles.inputs} value={userName} onChangeText={text => setUserName(text)} placeholder="Username, email address" />
@@ -49,7 +50,7 @@ function SignIn() {
           
         </View>
 
-        <AppText style={{color: passedTheme.colors.blue, fontFamily:"OpenSans-Medium", marginLeft:"auto"}}>Forgotten password?</AppText>
+        <BlueText style={{marginLeft:"auto"}}>Forgotten password?</BlueText>
 
         <InstagramButton style={styles.signInButton}>
           <AppText style={{color: "white",fontFamily:"OpenSans-Medium"}}>Log In</AppText>
@@ -57,12 +58,13 @@ function SignIn() {
 
       </View>
       
-
-      <Button style={styles.signInButton} title="toggle theme" onPress={() => handlePress()} />
-      <View style={{flex: 1}}>
-
+      <Button style={[styles.signInButton, {marginBottom: 10}]} title="toggle theme" onPress={() => handlePress()} />
+      
+      <View style={styles.bottomContainer}>
+        <Bar style={{position: "absolute", top: 0}} />
+        <AppText>Don't have an account? <BlueText>Sign up</BlueText></AppText>
       </View>
-      <AppText>SignIn</AppText>
+    
     </Screen>
   );
 };
@@ -113,6 +115,13 @@ const styles = StyleSheet.create({
   signInButton: {
     width: "100%",
     marginTop: 40,
+  },
+  bottomContainer: {
+    flex: 1.2, 
+    display: "flex", 
+    justifyContent:"center", 
+    alignItems:"center",
+    position: "relative"
   }
 });
 
