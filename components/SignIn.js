@@ -1,6 +1,6 @@
 import { useTheme } from '@react-navigation/native';
-import React, { useState } from 'react'
-import { View , Text , Button , Image, StyleSheet, Dimensions, Pressable } from 'react-native'
+import React, { useState , useEffect } from 'react'
+import { View, Button , Image, StyleSheet, Dimensions, Pressable, Keyboard} from 'react-native'
 import { Screen , AppText , CustomInput , InstagramButton , Bar, BlueText } from "../resusable";
 import { storeUserSession } from "../helpers/asyncStorage";
 import { useDispatch , useSelector } from 'react-redux';
@@ -25,9 +25,24 @@ function SignIn() {
       }))
     }
   }
+  const [hideComponents, setHideComponents] = useState(false);
+
+  useEffect(() => {
+    const keyboardShowListener = Keyboard.addListener('keyboardDidShow', () => {
+      setHideComponents(true);
+    });
+    const keyboardHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      setHideComponents(false);
+    });
+    return () => {
+      keyboardShowListener.remove();
+      keyboardHideListener.remove();
+    };
+  }, []);
   
   return (
     <Screen wrapper={View} style={styles.container}>
+
       <View style={styles.imageWrapper}>
         <Image 
           style={styles.imageLogo} 
@@ -60,11 +75,10 @@ function SignIn() {
       
       <Button style={[styles.signInButton, {marginBottom: 10}]} title="toggle theme" onPress={() => handlePress()} />
       
-      <View style={styles.bottomContainer}>
+      {!hideComponents && <View style={styles.bottomContainer}>
         <Bar style={{position: "absolute", top: 0}} />
         <AppText>Don't have an account? <BlueText>Sign up</BlueText></AppText>
-      </View>
-    
+      </View>}
     </Screen>
   );
 };
